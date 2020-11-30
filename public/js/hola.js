@@ -1,0 +1,1 @@
+const mensaje = 'el día es azul celeste'
