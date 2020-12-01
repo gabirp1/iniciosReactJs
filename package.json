@@ -25,6 +25,7 @@
     "live-server": "^1.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "@babel/polyfill": "^7.12.1",
+    "node-ipinfo": "^1.0.1"
   }
 }

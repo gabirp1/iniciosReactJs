@@ -1,6 +1,6 @@
 const city = 'Reus'
 const key = '98296c25307036fe8fe33775019062dd'
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric&lang=es`
 
 const getWeather = async ()=> {
     const result = await axios.get(url)

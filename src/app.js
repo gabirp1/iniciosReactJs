@@ -1,53 +1,31 @@
-const personas = [
-    { nombre: 'Paquita', edad: 29, ciudad: 'Vilaseca' },
-    { nombre: 'Paco', edad: 36, ciudad: 'Reus' }
-]
+const url = `https://restcountries.eu/rest/v2/all`
 
 
-const sumar = (e) => {
-    personas[0].edad++;
+const getCountry = async (countryCode) => {
+    const result = await axios.get(url)
+    const countries = result.data
+    const country = countries.find((country)=>{
+        return country.alpha2Code.toLowerCase() === countryCode.toLowerCase()
+    })
+    console.log(country.name);
+    render ('Spain')
+    return country
     
-    const template = <p id="edad">{personas[0].edad}</p>
-    const appEdad = document.querySelector('#edad')
-    ReactDOM.render(template, appEdad)
-
-    console.log(personas[0].edad)
 }
 
-const restar = (e) => {
-    personas[0].edad--;
+const country = getCountry('ES')
 
-    const template = <p id="edad">{personas[0].edad}</p>
-    const appEdad = document.querySelector('#edad')
-    ReactDOM.render(template, appEdad)
-
-    console.log(personas[0].edad)
-}
-
-const reset = (e) => {
-    personas[0].edad = 29;
-
-    const template = <p id="edad">{personas[0].edad}</p>
-    const appEdad = document.querySelector('#edad')
-    ReactDOM.render(template, appEdad)
-
-    console.log(personas[0].edad)
-}
-
-
-const template = <div>
-        <p id="nombre">{personas[0].nombre}</p>
-        <p id="edad">{personas[0].edad}</p>
-        <p id="ciudad">{personas[0].ciudad}</p>
-        <p><button onClick={sumar}>+1</button><button onClick={restar}>-1</button><button onClick={reset}>reset</button></p>
-    </div>
 
 
 const appRoot = document.getElementById('appRoot')
 
-ReactDOM.render(template, appRoot)
 
-
-
-
+const render = (name)=>{
+    const template = (
+        <div>
+        <h1>Este es el pais: {name} </h1>
+           </div>
+    )
+    ReactDOM.render(template, appRoot)
+    }
 
