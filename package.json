@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "serve": "live-server public",
-    "code": "babel src/app.js --out-file=public/js/index.js --presets=react,env --watch",
-    "dev": "npm run code | npm run serve"
+    "babel": "babel src/app.js --out-file=public/js/index.js --presets=react,env --watch",
+    "dev": "npm run babel | npm run serve"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "live-server": "^1.2.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
   }
 }
