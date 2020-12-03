@@ -1,49 +1,61 @@
-/* const url = `https://restcountries.eu/rest/v2/all`
+const personas = [
+    { nombre: 'Paquita', edad: 29, ciudad: 'Vilaseca' },
+    { nombre: 'Paco', edad: 36, ciudad: 'Reus' }
+]
 
 
+const sumar = (e) => {
+    personas[0].edad++;
 
-const getCountry = async (countryCode) => {
-    const result = await axios.get(url)
-    const countries = result.data
-    const country = countries.find((country)=>{
-        return country.alpha2Code.toLowerCase() === countryCode.toLowerCase()
-    })
-    console.log(country.name);
-    render (country.name)
-    return country
-    
+    const template = <p id="edad">{personas[0].edad}</p>
+    const appEdad = document.querySelector('#edad')
+    ReactDOM.render(template, appEdad)
+
+    console.log(personas[0].edad)
 }
 
-const country = getCountry('ES') */
+const restar = (e) => {
+    personas[0].edad--;
 
+    const template = <p id="edad">{personas[0].edad}</p>
+    const appEdad = document.querySelector('#edad')
+    ReactDOM.render(template, appEdad)
 
-const getCountryByIp = async () => {
-    const result1 = await axios.get('https://ipinfo.io/json?token=83974b22092886')
-
-    const countryCode = result1.data.country
-    console.log('ipinfo.io nos da este resultado', result1.data.country);
-    ///podemos consultar todos los paises a restcountry
-    const result2 = await axios.get('https://restcountries.eu/rest/v2/all')
-    const countries = result2.data
-    console.log('restcountry nos da este resultado:', countries[240].alpha2Code);
-    const country = countries.find((country) => {
-        return country.alpha2Code === countryCode
-    })
-    render(country.name)
+    console.log(personas[0].edad)
 }
-getCountryByIp()
+
+const reset = (e) => {
+    personas[0].edad = 29;
+
+    const template = <p id="edad">{personas[0].edad}</p>
+    const appEdad = document.querySelector('#edad')
+    ReactDOM.render(template, appEdad)
+
+    console.log(personas[0].edad)
+}
+const writeLocation = (city) => {
+    if (city) {
+        return <p id="ciudad">{personas[0].ciudad}</p>
+    }
+}
+
+const template = <div>
+    <p id="nombre">{personas[0].nombre}</p>
+    <p id="edad">{personas[0].edad}</p>
+    <p id="ciudad">{personas[0].ciudad}</p>
+    {writeLocation(personas.city)}
+
+    <p><button onClick={sumar}>+1</button>
+        <button onClick={restar}>-1</button>
+        <button onClick={reset}>reset</button></p>
+</div>
 
 
 const appRoot = document.getElementById('appRoot')
 
+ReactDOM.render(template, appRoot)
 
-const render = (country) => {
-    const template = (
-        <div>
-            <h1>Este es el pais: {country} </h1>
-        </div>
 
-    )
-    ReactDOM.render(template, appRoot)
-}
+
+
 
